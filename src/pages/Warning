@@ -1,5 +1,6 @@
-<script>
-  if (!confirm("⚠ This site contains sensitive content. Do you wish to continue?")) {
-    window.location.href = "https://astro-blog-starter-template.ericthegreen22.workers.dev";
+export const onRequest = async ({ request, redirect }) => {
+  const restrictedPath = request.url.includes("/restricted");
+  if (restrictedPath) {
+    return redirect("/warning");
   }
-</script>
+};
